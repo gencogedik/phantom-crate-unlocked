@@ -9,17 +9,17 @@ interface ItemDisplayProps {
 }
 
 export const ItemDisplay = ({ item, revealed = true, className }: ItemDisplayProps) => {
-  const rarityColorClass = `text-${RARITY_COLORS[item.rarity]}`;
-  const rarityBorderClass = `border-${RARITY_COLORS[item.rarity]}/30`;
-  
   return (
     <Card 
       className={cn(
         "overflow-hidden transition-all duration-300",
-        rarityBorderClass,
+        `border-[hsl(var(--rarity-${item.rarity}))]`,
         revealed ? "animate-reveal-item" : "opacity-50",
         className
       )}
+      style={{
+        boxShadow: `0 0 20px hsl(var(--rarity-${item.rarity}) / 0.3)`
+      }}
     >
       <div className="aspect-[4/3] relative overflow-hidden">
         <img 
@@ -27,25 +27,30 @@ export const ItemDisplay = ({ item, revealed = true, className }: ItemDisplayPro
           alt={item.name}
           className="w-full h-full object-cover"
         />
-        <div className={cn(
-          "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent",
-          `from-${RARITY_COLORS[item.rarity]}/20`
-        )} />
+        <div 
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+          style={{
+            background: `linear-gradient(to top, hsl(var(--rarity-${item.rarity}) / 0.3), transparent, transparent)`
+          }}
+        />
         
         {/* Rarity indicator */}
-        <div className={cn(
-          "absolute top-2 right-2 px-2 py-1 rounded text-xs font-semibold",
-          `bg-${RARITY_COLORS[item.rarity]}/20 text-${RARITY_COLORS[item.rarity]}`
-        )}>
+        <div 
+          className="absolute top-2 right-2 px-2 py-1 rounded text-xs font-semibold"
+          style={{
+            backgroundColor: `hsl(var(--rarity-${item.rarity}) / 0.2)`,
+            color: `hsl(var(--rarity-${item.rarity}))`
+          }}
+        >
           {RARITY_NAMES[item.rarity]}
         </div>
       </div>
       
       <div className="p-4">
-        <h3 className={cn(
-          "font-bold text-lg mb-2 leading-tight",
-          rarityColorClass
-        )}>
+        <h3 
+          className="font-bold text-lg mb-2 leading-tight"
+          style={{ color: `hsl(var(--rarity-${item.rarity}))` }}
+        >
           {item.name}
         </h3>
         
@@ -57,10 +62,10 @@ export const ItemDisplay = ({ item, revealed = true, className }: ItemDisplayPro
         
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-primary">
-            ${item.price.toFixed(2)}
+            ₺{item.price.toFixed(2)}
           </span>
           {item.name.includes('★') && (
-            <span className="text-yellow-400 text-lg">★</span>
+            <span style={{ color: `hsl(var(--rarity-exceedingly-rare))` }} className="text-lg">★</span>
           )}
         </div>
       </div>

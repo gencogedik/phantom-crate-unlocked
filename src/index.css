@@ -37,13 +37,13 @@
     --ring: 25 95% 53%;
 
     /* CS:GO Rarity Colors */
-    --rarity-consumer: 0 0% 90%;
-    --rarity-industrial: 195 100% 70%;
-    --rarity-milspec: 240 100% 70%;
-    --rarity-restricted: 270 100% 70%;
-    --rarity-classified: 300 100% 70%;
-    --rarity-covert: 0 100% 60%;
-    --rarity-exceedingly-rare: 48 100% 50%;
+    --rarity-consumer: 0 0% 75%;      /* Light Grey */
+    --rarity-industrial: 195 85% 60%; /* Light Blue */
+    --rarity-milspec: 240 100% 70%;   /* Blue */
+    --rarity-restricted: 270 100% 70%; /* Purple */
+    --rarity-classified: 300 85% 60%; /* Pink */
+    --rarity-covert: 0 85% 60%;       /* Red */
+    --rarity-exceedingly-rare: 48 95% 55%; /* Gold */
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));

@@ -32,7 +32,7 @@ export const CaseOpening = () => {
     if (!selectedCase) return;
 
     if (balance < selectedCase.price) {
-      toast.error('Insufficient balance!');
+      toast.error('Yetersiz bakiye!');
       return;
     }
 
@@ -50,8 +50,8 @@ export const CaseOpening = () => {
       // Add the item value to balance (demo feature)
       addBalance(result.price * 0.8); // 80% of item value as "sell price"
       
-      toast.success(`Won ${result.name}!`, {
-        description: `Added $${(result.price * 0.8).toFixed(2)} to balance`
+      toast.success(`${result.name} kazandın!`, {
+        description: `Bakiyene ₺${(result.price * 0.8).toFixed(2)} eklendi`
       });
     } catch (error) {
       toast.error('Failed to open case');
@@ -118,7 +118,7 @@ export const CaseOpening = () => {
                     {selectedCase.description}
                   </p>
                   <span className="text-primary font-bold text-xl">
-                    ${selectedCase.price.toFixed(2)}
+                    ₺{selectedCase.price.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export const CaseOpening = () => {
               disabled={balance < selectedCase.price}
             >
               <Package className="h-6 w-6" />
-              Open Case - ${selectedCase.price.toFixed(2)}
+              Kasa Aç - ₺{selectedCase.price.toFixed(2)}
             </Button>
           )}
         </div>
@@ -164,9 +164,9 @@ export const CaseOpening = () => {
         {/* Case Contents Preview */}
         {!isOpening && !hasOpened && (
           <div className="mt-12">
-            <h2 className="text-xl font-bold mb-6 text-center">Case Contents</h2>
+            <h2 className="text-xl font-bold mb-6 text-center">Kasa İçeriği</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {selectedCase.items.slice(0, 8).map((item) => (
+              {selectedCase.items.slice(0, 16).map((item) => (
                 <Card key={item.id} className="overflow-hidden">
                   <div className="aspect-square relative">
                     <img 
@@ -180,15 +180,15 @@ export const CaseOpening = () => {
                       {item.name}
                     </h3>
                     <p className="text-primary font-bold text-sm">
-                      ${item.price.toFixed(2)}
+                      ₺{item.price.toFixed(2)}
                     </p>
                   </div>
                 </Card>
               ))}
             </div>
-            {selectedCase.items.length > 8 && (
+            {selectedCase.items.length > 16 && (
               <p className="text-center text-muted-foreground mt-4">
-                And {selectedCase.items.length - 8} more items...
+                Ve {selectedCase.items.length - 16} adet daha...
               </p>
             )}
           </div>
