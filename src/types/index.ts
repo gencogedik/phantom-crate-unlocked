@@ -5,16 +5,15 @@ export interface Item {
   rarity: Rarity;
   image: string;
   collection?: string;
+  compatibility?: string[];
 }
 
 export type Rarity = 
-  | 'consumer'
-  | 'industrial'
-  | 'milspec'
-  | 'restricted'
-  | 'classified'
-  | 'covert'
-  | 'exceedingly-rare';
+  | 'basic'
+  | 'premium'
+  | 'elite'
+  | 'legendary'
+  | 'exotic';
 
 export interface Case {
   id: string;
@@ -23,6 +22,11 @@ export interface Case {
   image: string;
   items: Item[];
   description: string;
+}
+
+export interface CartItem {
+  item: Item;
+  quantity: number;
 }
 
 export interface User {
@@ -35,31 +39,25 @@ export interface CaseOpeningResult {
 }
 
 export const RARITY_COLORS: Record<Rarity, string> = {
-  'consumer': 'rarity-consumer',
-  'industrial': 'rarity-industrial',
-  'milspec': 'rarity-milspec',
-  'restricted': 'rarity-restricted',
-  'classified': 'rarity-classified',
-  'covert': 'rarity-covert',
-  'exceedingly-rare': 'rarity-exceedingly-rare',
+  'basic': 'rarity-basic',
+  'premium': 'rarity-premium',
+  'elite': 'rarity-elite',
+  'legendary': 'rarity-legendary',
+  'exotic': 'rarity-exotic',
 };
 
 export const RARITY_NAMES: Record<Rarity, string> = {
-  'consumer': 'Consumer Grade',
-  'industrial': 'Industrial Grade',
-  'milspec': 'Mil-Spec Grade',
-  'restricted': 'Restricted',
-  'classified': 'Classified',
-  'covert': 'Covert',
-  'exceedingly-rare': 'Exceedingly Rare',
+  'basic': 'Temel',
+  'premium': 'Premium',
+  'elite': 'Elite',
+  'legendary': 'Efsanevi',
+  'exotic': 'Egzotik',
 };
 
 export const RARITY_CHANCES: Record<Rarity, number> = {
-  'consumer': 0.7992,      // 79.92%
-  'industrial': 0.1598,    // 15.98%
-  'milspec': 0.032,       // 3.2%
-  'restricted': 0.0064,   // 0.64%
-  'classified': 0.0013,   // 0.13%
-  'covert': 0.0026,       // 0.26%
-  'exceedingly-rare': 0.0001, // 0.01%
+  'basic': 0.70,      // 70%
+  'premium': 0.20,    // 20%
+  'elite': 0.07,      // 7%
+  'legendary': 0.025, // 2.5%
+  'exotic': 0.005,    // 0.5%
 };

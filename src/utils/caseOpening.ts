@@ -18,15 +18,15 @@ export const getRandomItem = (items: Item[]): Item => {
   // Find which rarity range the random number falls into
   const selectedRarity = rarityRanges.find(range => 
     random >= range.min && random < range.max
-  )?.rarity || 'consumer';
+  )?.rarity || 'basic';
   
   // Filter items by the selected rarity
   const itemsOfRarity = items.filter(item => item.rarity === selectedRarity);
   
-  // If no items of this rarity exist, fallback to consumer grade
+  // If no items of this rarity exist, fallback to basic grade
   if (itemsOfRarity.length === 0) {
-    const consumerItems = items.filter(item => item.rarity === 'consumer');
-    return consumerItems[Math.floor(Math.random() * consumerItems.length)];
+    const basicItems = items.filter(item => item.rarity === 'basic');
+    return basicItems[Math.floor(Math.random() * basicItems.length)] || items[0];
   }
   
   // Return a random item from the selected rarity
